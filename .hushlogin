@@ -1,0 +1,3 @@
+# When this file exists in the home directory, the system will not display any
+# messages upon log-in such as last log-in time, copyright notices, time since
+# system update, MoTD, etc.

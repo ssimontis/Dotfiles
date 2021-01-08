@@ -1,0 +1,176 @@
+[user]
+  name = Scott Simontis
+  email = yo@scottsimontis.io
+
+[core]
+  excludesfile = ~/.gitignore
+  editor = code --wait
+  # Consider spaces nefore tabs and trailing whitespace to be errors
+  whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+  pager = less -s -n
+  # Speed upcommands involving untracked files
+  untrackedCache = true
+  # Convert Windows line endings to UNIX
+  autocrlf = input
+  # Compress all the things!
+  compression = 9
+  filemode = false
+
+[apply]
+  whitespace = fix
+
+[branch]
+  # Branches and checkouts automatically configured to merge appropriately
+  autoSetupMerge = true
+
+[diff]
+  mnemonicPrefix = true
+  tool = vscode
+  # Detect copies and renames
+  renames = copies
+
+[diff "bin"]
+  # Allow diff of binary files
+  textconv = hexdump -v -C
+
+[diff "vscode"]
+  cmd = code --wait --diff $LOCAL $REMOTE
+
+[fetch]
+  # Traverse submodules when fetching repo
+  recurseSubmodules = true
+  # Prune branches dead on server
+  prune = true
+  parallel = 8
+
+[grep]
+  lineNumber = true
+  extendedRegexp = true
+  fullName = true
+  threads = 4
+
+[help]
+  autocorrect = 1
+
+[http]
+  version = HTTP/2
+  sslVersion = tlsv1.2
+  sslVersion= = tlsv1.3
+  maxRequests = 8
+
+[init]
+  defaultBranch = main
+
+[merge]
+  # Include summary of merged commits in newly created commit messages
+  log = true
+  # Similar to no-ff CLI option
+  ff = false
+  tool = vscode
+
+[mergetool]
+  # Store original merge file
+  keepBackup = true
+
+[mergetool "vscode"]
+  cmd = "code --wait $MERGED"
+
+[pull]
+  rebease = preserve
+
+[push]
+  # push operations will push relevant tags when pushing branch
+  followTags = true
+  recurseSubmodules = true
+
+[rerere]
+  autoUpdate = true
+  enabled = true
+
+[github]
+  user = ssimontis
+  token =
+
+[url "https://github.com/"]
+  insteadOf = "gh:"
+
+[url "https://gist.github.com/"]
+  insteadOf = "gist:"
+  pushInsteadOf = "git://gist.github.com/"
+
+[url "https://bitbucket.org/"]
+  insteadOf = bb:
+
+[url "https://gitlab.org/"]
+  insteadOf = gl:
+
+[format]
+  pretty = format:%C(yellow)%h%C(reset) %C(green)%ad%C(auto)%d%C(reset) %s %C(blue)<%an>%C(reset)
+
+[alias]
+  # Abbreviated log
+  l = log --pretty=oneline -n 20 --graph --abbrev-commit
+
+  # Short status
+  s = status -s
+
+  # Diff current state vs latest commit
+  d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
+
+  # Diff current state to prev xth commit
+  di = !"d() { git diff --patch-with-stat HEAD~$1; }; git diff-index --quiet HEAD -- || clear; d"
+
+  co = checkout
+
+  count = !git shortlog -sn
+
+  freebase = pull --rebase
+
+  brls = branch -a
+
+  brname = !git branch | grep "^*" | awk '{print $2}'
+
+  brdel = branch -D
+
+  churn = !git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print "count,file"} {print $1 "," $2}'
+
+  export = archive -o latest.tar.gz -9 --prefix=latest/
+
+  unstage = reset HEAD --
+
+  g = !git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abrev-commit --date=relative
+
+  rem = !git ls-files -z --deleted | xargs -0 git rm
+
+  root = rev-parse --show-toplevel
+
+  subup = submodule update --init
+
+  tags = tag -l
+
+  this = !git init && git add . && git commit -m \"Initial commit.\"
+
+  today-all = !git log --since=midnight --no-merges --all
+
+  log-standup = !git log --since=yesterday --author=\"$(git config user.email)\" --pretty=short
+
+  this-week = !git log --since=1.weeks --author=\"$(git config user.name)\" --no-merges --all --pretty='%C(green)%ad%C(auto) - %s' --date=format:'%Y-%m-%d %a %H:%M'
+
+[color]
+  ui = auto
+
+[color "branch"]
+  current = yellow reverse
+  local = yellow
+  remote = green
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+
+[color "status"]
+  added = yellow
+  changed = green
+  untracked = cyan

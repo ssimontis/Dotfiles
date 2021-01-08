@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+
+###############################################################################
+#      SCRIPT: upgradedistro
+# DESCRIPTION: Updates any distro using apt as the package manager
+#      AUTHOR: Scott Simontis <yo@scottsimontis.io>
+#       USAGE: sudo upgradedistro
+#      RESULT: Silently upgrades operating system if any updates are available
+#+             and removes packages no longer necessary after update.
+#     REMARKS: Requires sudo priviliges to run function
+#     RETURNS: Status of last apt command to process, or error if not root.
+###############################################################################
+
+set -euo pipefail
+
+declare -r ROOT_UID=0
+declare -r E_NOROOT=87
+
+#--- verify_root() -------------------------------------------------------------
+# Ensures that the script is running as the root user; if use of another account
+# is detected, execution is aborted.
+#-------------------------------------------------------------------------------
+verify_root () {
+  if [[ $UID -ne "$ROOT_UID" ]]; then
+    echo "Only root user may run this script."
+    exit $E_NOROOT
+  fi
+}
+
+apt update
+apt -y full-upgrade
+apt -y autoremove
+
+exit $?

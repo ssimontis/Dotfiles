@@ -1,0 +1,54 @@
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Temporary files #
+###################
+*.swp
+*.swo
+*~
+
+# Packages #
+############
+*.7z
+# Archives and images
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs #
+######################
+*.log
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+Desktop.ini
+._*
+*.lock
+Thumbs.db
+
+# Coding statistics #
+#####################
+codealike.json
+
+# Python compiled files #
+#########################
+*.pyc
+
+# External disk files #
+#######################
+.Spotlight-V100
+.Trashes

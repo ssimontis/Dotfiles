@@ -1,0 +1,35 @@
+# Tab always autocompletes
+set completion-ignore-case on
+
+# List all matches if > 1 possible
+set show-all-if-ambiguous on
+
+# Add a trailing slash when autocompleting symlinks to directories
+set mark-symlinked-directories on
+
+# More intelligent history
+"\e[B": history-search-forward
+"\e[A": history-search-backward
+
+# Avoid dotfile completion unless prefixed with a dot
+set match-hidden-files off
+
+# Show all results at once
+set page-completions off
+
+# Ask permission to display > 50 results
+set completion-query-items 50
+
+# Show extra file info
+set visible-stats on
+
+# Look at text after cursor for smarter completion`
+set skip-completed-text on
+
+# Allow UTF-8 I/O
+set input-meta on
+set output-meta on
+set convert-meta off
+
+# Alt/Meta DEL removes previous word
+"\e[3;3~": kill-word

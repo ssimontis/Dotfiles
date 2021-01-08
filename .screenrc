@@ -1,0 +1,8 @@
+# No startup message
+startup_message off
+
+# Increase scrollback buffer
+defscrollback 32000
+
+# Start with UTF-8 enabled
+defutf8 on

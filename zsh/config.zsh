@@ -1,0 +1,33 @@
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+
+setopt NO_HUP
+setopt NO_LIST_BEEP
+setopt LOCAL_OPTIONS
+setopt LOCAL_TRAPS
+setopt HIST_VERIFY
+setopt SHARE_HISTORY
+setopt EXTENDED_HISTORY
+setopt PROMPT_SUBST
+setopt CORRECT
+setopt COMPLETE_IN_WORD
+setopt IGNORE_EOF
+
+setopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY SHARE_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_REDUCE_BLANKS
+setopt HIST_IGNORE_SPACE
+
+# no expansion before completion
+setopt complete_aliases
+
+setopt AUTO_CD
+setopt AUTO_PUSHD
+setopt CHASE_LINKS
+setopt PUSHD_IGNORE_DUPS
+
+setopt AUTO_LIST -5
+setopt BAD_PATTERN
+setopt PUSHDMINUS
